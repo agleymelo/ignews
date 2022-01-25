@@ -42,4 +42,8 @@ export const Hero = styled.section`
       font-weight: bold;
     }
   }
+
+  button {
+    margin-top: 2.5rem;
+  }
 `;

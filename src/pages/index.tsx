@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { SubscribeButton } from "../components/SubscribeButton";
 
 import { Container, Hero } from "./home.styles";
 
@@ -21,6 +22,8 @@ export default function Home() {
             Get access to all the publications <br />
             <span>for $9.90 moth</span>
           </p>
+
+          <SubscribeButton />
         </Hero>
 
         <img src="/images/avatar.svg" alt="Girl coding" />
