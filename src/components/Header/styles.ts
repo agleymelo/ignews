@@ -56,4 +56,8 @@ export const Content = styled.div`
       }
     }
   }
+
+  > button {
+    margin-left: auto;
+  }
 `;
