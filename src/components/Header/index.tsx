@@ -1,4 +1,6 @@
 import Image from "next/image";
+
+import { ActiveLink } from "../ActiveLink";
 import { SignInButton } from "../SignInButton";
 
 import { Container, Content } from "./styles";
@@ -15,8 +17,13 @@ export function Header() {
         />
 
         <nav>
-          <a className="active">Home</a>
-          <a>Post</a>
+          <ActiveLink activeClassName="active" href="/">
+            <a>Home</a>
+          </ActiveLink>
+
+          <ActiveLink activeClassName="active" href="/posts">
+            <a>Post</a>
+          </ActiveLink>
         </nav>
 
         <SignInButton />
