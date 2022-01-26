@@ -1,3 +1,8 @@
+import { signIn, useSession } from "next-auth/react";
+
+import { api } from "../../services/api";
+import { getStripeJs } from "../../services/stripe-js";
+
 import { Container } from "./styles";
 
 type SubscribeButtonProps = {
@@ -5,5 +10,27 @@ type SubscribeButtonProps = {
 };
 
 export function SubscribeButton({ priceId }: SubscribeButtonProps) {
-  return <Container>Subscribe now!</Container>;
+  const { data: session } = useSession();
+
+  async function handleSubscribe() {
+    if (!session) {
+      signIn("github");
+      return;
+    }
+
+    // create checkout seassion
+    try {
+      const response = await api.post("subscribe");
+
+      const { sessionId } = response.data;
+
+      const stripe = await getStripeJs();
+
+      await stripe.redirectToCheckout({ sessionId });
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  return <Container onClick={handleSubscribe}>Subscribe now!</Container>;
 }
